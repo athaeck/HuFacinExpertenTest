@@ -21,11 +21,17 @@ public class ObjectMover : MonoBehaviour
     [SerializeField]
     private bool _startMovement = false;
     [SerializeField]
-    private float _startDelay = 30f;
+    private float _startDelay = 30f*10;
 
     void Start()
     {
-        transform.localScale = Vector3.one * Vector3.Distance(transform.position, _playerTransform.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
+        float scale = distanceToPlayer/10;
+        _targetScale = (Vector3.one * scale) ;
+        //transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, _scaleSpeed * Time.fixedDeltaTime);
+        transform.localScale = _targetScale;
+
+        StartCoroutine(StartMovement());
     }
 
     private void FixedUpdate()
@@ -39,7 +45,7 @@ public class ObjectMover : MonoBehaviour
         if (_moveTimer >= _moveInterval)
         {
             _moveTimer = 0f;
-            _targetPosition = _playerTransform.position - _playerTransform.forward * 0.1f;
+            _targetPosition = _playerTransform.position - _playerTransform.forward * 0.01f;
         }
 
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _moveSpeed * Time.fixedDeltaTime);
@@ -50,9 +56,9 @@ public class ObjectMover : MonoBehaviour
 
         // Scale down towards 1 meter size
         float distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
-        float scale = Mathf.Clamp(distanceToPlayer, 1f, Mathf.Infinity);
-        _targetScale = Vector3.one * scale;
-        transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, _scaleSpeed * Time.fixedDeltaTime);
+        float scale = distanceToPlayer/10;
+        _targetScale = (Vector3.one * scale);
+        transform.localScale = _targetScale;
 
 
         // Stop 10cm before player position
