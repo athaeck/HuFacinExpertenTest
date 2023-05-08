@@ -18,6 +18,10 @@ public class ObjectMover : MonoBehaviour
     private float _moveTimer = 0f;
     [SerializeField]
     private float _moveInterval = 30f;
+    [SerializeField]
+    private bool _startMovement = false;
+    [SerializeField]
+    private float _startDelay = 30f;
 
     void Start()
     {
@@ -26,6 +30,7 @@ public class ObjectMover : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!_startMovement) return;
 
         // Update timer
         _moveTimer += Time.fixedDeltaTime;
@@ -40,8 +45,15 @@ public class ObjectMover : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _moveSpeed * Time.fixedDeltaTime);
 
         // Scale down towards 1 meter size
-        _targetScale = Vector3.one * Vector3.Distance(transform.position, _playerTransform.position);
+        // _targetScale = Vector3.one * Vector3.Distance(transform.position, _playerTransform.position);
+        // transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, _scaleSpeed * Time.fixedDeltaTime);
+
+        // Scale down towards 1 meter size
+        float distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
+        float scale = Mathf.Clamp(distanceToPlayer, 1f, Mathf.Infinity);
+        _targetScale = Vector3.one * scale;
         transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, _scaleSpeed * Time.fixedDeltaTime);
+
 
         // Stop 10cm before player position
         if (Vector3.Distance(transform.position, _targetPosition) <= 0.1f)
@@ -50,5 +62,19 @@ public class ObjectMover : MonoBehaviour
             transform.localScale = Vector3.one;
             enabled = false;
         }
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StopAllCoroutines();
+            _startMovement = true;
+        }
+    }
+
+    IEnumerator StartMovement()
+    {
+        yield return new WaitForSeconds(_startDelay);
+        _startMovement = true;
     }
 }
