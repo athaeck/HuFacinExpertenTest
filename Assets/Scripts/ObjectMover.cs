@@ -22,11 +22,13 @@ public class ObjectMover : MonoBehaviour
     private bool _startMovement = false;
     [SerializeField]
     private float _startDelay = 30f*10;
+    [SerializeField]
+    private float _stopDisntaceValue = 0.1f;
 
     void Start()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
-        float scale = distanceToPlayer/10;
+        float scale = distanceToPlayer / 5;
         _targetScale = (Vector3.one * scale) ;
         //transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, _scaleSpeed * Time.fixedDeltaTime);
         transform.localScale = _targetScale;
@@ -56,16 +58,19 @@ public class ObjectMover : MonoBehaviour
 
         // Scale down towards 1 meter size
         float distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
-        float scale = distanceToPlayer/10;
+        float scale = distanceToPlayer / 5;
+
         _targetScale = (Vector3.one * scale);
-        transform.localScale = _targetScale;
+        transform.localScale = Vector3.Lerp(transform.localScale, _targetScale, _scaleSpeed * Time.fixedDeltaTime);
 
 
         // Stop 10cm before player position
-        if (Vector3.Distance(transform.position, _targetPosition) <= 0.1f)
+        if (Vector3.Distance(transform.position, _playerTransform.position) <= _stopDisntaceValue)
+        //if(transform.position.x == 220.992f && transform.position.z == 194.76f)
         {
-            transform.position = _targetPosition;
-            transform.localScale = Vector3.one;
+            _startMovement = false;
+            //transform.position = _targetPosition;
+            //transform.localScale = Vector3.one;
             enabled = false;
         }
     }
