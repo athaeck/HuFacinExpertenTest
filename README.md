@@ -11,5 +11,5 @@ Die Ausarbeitung zu diesem Thema befindet sich [hinter diesem Link](https://gith
 
 Da manche Pakcages zu groß sind, um diese über Git versionieren zu können, müssen diese extern heruntergeladen werden und in den Assets Ordner importiert werden.
 
-Unter diesem [Link](https://drive.google.com/drive/folders/1KzXZWkf2XbAvV2i6zYZXaQ9OCM6LVZyi?usp=sharing) können die fehlenden Assets heruntergeladen werden. Nachdem der Download abgeschlossen ist, müssen die Zips im Ordner ```./Assets``` entzppt werden. Im Anschluss kann die Testszene gestartet werden.
+Unter diesem [Link](https://drive.google.com/drive/folders/1KzXZWkf2XbAvV2i6zYZXaQ9OCM6LVZyi?usp=sharing) können die fehlenden Assets heruntergeladen werden. Nachdem der Download abgeschlossen ist, müssen die Zips im Ordner ```./Assets``` entzipt werden. Im Anschluss kann die Testszene gestartet werden.
 
