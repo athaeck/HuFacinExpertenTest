@@ -1,6 +1,6 @@
-# Human Factors in VR: Akkomodations - Konvergenz Konflikt
+# Human Factors in VR: Akkommodations - Konvergenz Konflikt
 
-Dieses Projekt ist die Testszene, die für die Ausarbeitung bezüglich des Akkomodations - Konvergenz Konflikts im ultra-nah-Bereich im menschlichen Auge in der Virtuellen Realität erstellt wurde. Mehr Informationen zu diesem Thema sind im folgenden Kapitel beschrieben.
+Dieses Projekt ist die Testszene, die für die Ausarbeitung bezüglich des Akkommodations - Konvergenz Konflikts im ultra-nah-Bereich im menschlichen Auge in der Virtuellen Realität erstellt wurde. Mehr Informationen zu diesem Thema sind im folgenden Kapitel beschrieben.
 
 ## Ausarbeitung
 
